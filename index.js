@@ -36,6 +36,10 @@ const storage = multer.diskStorage({
 // Initialize multer upload middleware
 const upload = multer({ storage: storage });
 
+app.get("/", (req, res) => {
+  res.send("Working!");
+}); 
+
 // Form route
 app.post("/submit-form", upload.single("pdf"), (req, res) => {
   const { name, email } = req.body;
@@ -123,6 +127,7 @@ const User = mongoose.model("User", userSchema);
 
 // Middleware to parse JSON requests
 app.use(bodyParser.json());
+
 
 // Registration endpoint
 app.post("/api/register", async (req, res) => {
